@@ -1,6 +1,6 @@
 package main;
 
-import java.awt.EventQueue;
+import java.awt.EventQueue; 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -142,7 +142,7 @@ public class LoginFrame extends JFrame {
 		pwdPassword.setBounds(63, 11, 245, 38);
 		pwdPassword.setEchoChar((char)0);
 		panelPass.add(pwdPassword);
-		
+		                 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(70, 11, 318, 84);
@@ -155,7 +155,30 @@ public class LoginFrame extends JFrame {
 				String user = textUsername.getText();
 				String pass = String.valueOf(pwdPassword.getPassword());
 				Statement statment = null;
-				String query = "SELECT * FROM tbl_user WHERE username='"+user+"' AND password='"+pass+"'";
+				String query = "SELECT * FROM tbl_registration WHERE username='"+user+"' AND password='"+pass+"'";
+				try {
+					statment = conn.createStatement();
+					ResultSet resultSet = statment.executeQuery(query);
+					if(resultSet.next()) {
+						//if success
+					    new MainFrame().setVisible(true);
+					    LoginFrame.this.dispose();
+					} else {
+						//if failed 
+						JOptionPane.showMessageDialog(LoginFrame.this, "Invalid username or password. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+					}
+				}catch(Exception ex) {
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Something Wrong!");
+				}
+			}
+		});
+		/*btnLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String user = textUsername.getText();
+				String pass = String.valueOf(pwdPassword.getPassword());
+				Statement statment = null;
+				
 				try {
 					statment = conn.createStatement();
 					ResultSet resultSet = statment.executeQuery(query);
@@ -203,7 +226,7 @@ public class LoginFrame extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				btnLogin.setBackground(new Color(240, 240, 240));
 			}
-		});
+		});*/
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 15));
 		btnLogin.setBackground(new Color(240, 240, 240));
 		btnLogin.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -224,7 +247,7 @@ public class LoginFrame extends JFrame {
 		});
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegisterFrame n = new RegisterFrame();
+				FrameRegistration n = new FrameRegistration();
 				n.setVisible(true);
 				LoginFrame.this.dispose();
 			}
