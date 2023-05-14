@@ -99,22 +99,6 @@ public class BulkSender extends JFrame {
 		panel_2_1_2_1_1.add(btnSendSelected);
 		
 		JLabel lblX = new JLabel("X");
-		lblX.setBounds(539, 11, 32, 21);
-		contentPane.add(lblX);
-		lblX.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(JOptionPane.showConfirmDialog(null, "Are you sure you want to close this program?","Confirm",JOptionPane.YES_NO_OPTION) == 0)
-					BulkSender.this.dispose();
-			}
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				lblX.setForeground(Color.RED);
-			}
-			public void mouseExited(MouseEvent e) {
-				lblX.setForeground(Color.BLACK);
-			}
-		});
 		lblX.setHorizontalAlignment(SwingConstants.CENTER);
 		lblX.setFont(new Font("Tahoma", Font.BOLD, 17));
 		

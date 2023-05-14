@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
 	 */
 	private PanelAddClientInfo panelStudentClientInfo;
 	private PanelSettings panelSettings;
-	private PanelSender panelSender;
+
 	private PanelAttendance panelAttendance;
 	private PanelAddTeacher panelAddTeacher;
 	
@@ -62,8 +62,7 @@ public class MainFrame extends JFrame {
 		panelStudentClientInfo.setBorder(null);
 		panelSettings = new PanelSettings();
 		panelSettings.setBounds(0, 0, 643, 538);
-		panelSender =  new PanelSender();
-		panelSender.setBounds(0, 0, 636, 538);
+
 		panelAttendance = new PanelAttendance();
 		panelAttendance.setBounds(0, 0, 636, 538);
 		panelAddTeacher = new PanelAddTeacher();
@@ -108,7 +107,7 @@ public class MainFrame extends JFrame {
 			}
 		});
 		paneSettings.setBorder(new LineBorder(new Color(0, 0, 0)));
-		paneSettings.setBounds(10, 421, 226, 51);
+		paneSettings.setBounds(10, 359, 226, 51);
 		panel.add(paneSettings);
 		paneSettings.setLayout(null);
 		
@@ -123,22 +122,7 @@ public class MainFrame extends JFrame {
 		lblNewLabel.setBounds(10, 111, 226, 39);
 		panel.add(lblNewLabel);
 		
-		JPanel paneSender = new JPanel();
-		paneSender.addMouseListener(new PanelButtonMouseAdapter(paneSender){
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				menuClicked(panelSender);
-			}
-		});
-		paneSender.setLayout(null);
-		paneSender.setBorder(new LineBorder(new Color(0, 0, 0)));
-		paneSender.setBounds(10, 359, 226, 51);
-		panel.add(paneSender);
 		
-		JLabel lblSender = new JLabel("SMS Sender");
-		lblSender.setFont(new Font("Arial", Font.BOLD, 17));
-		lblSender.setBounds(56, 11, 160, 29);
-		paneSender.add(lblSender);
 		
 		JPanel paneAttendance = new JPanel();
 		paneAttendance.addMouseListener(new PanelButtonMouseAdapter(paneAttendance){
@@ -173,7 +157,7 @@ public class MainFrame extends JFrame {
 		});
 		paneLogout.setLayout(null);
 		paneLogout.setBorder(new LineBorder(new Color(0, 0, 0)));
-		paneLogout.setBounds(10, 483, 226, 51);
+		paneLogout.setBounds(10, 421, 226, 51);
 		panel.add(paneLogout);
 		
 		JLabel Logout = new JLabel("Sign Out");
@@ -205,7 +189,6 @@ public class MainFrame extends JFrame {
 		paneMainContent.setLayout(null);
 		paneMainContent.add(panelStudentClientInfo);
 		paneMainContent.add(panelSettings);
-		paneMainContent.add(panelSender);
 		paneMainContent.add(panelAttendance);
 		paneMainContent.add(panelAddTeacher);
 
@@ -248,7 +231,7 @@ public class MainFrame extends JFrame {
 	public void menuClicked(JPanel panel) {
 		panelStudentClientInfo.setVisible(false);
 		panelSettings.setVisible(false);
-		panelSender.setVisible(false);
+
 		panelAttendance.setVisible(false);
 		panelAddTeacher.setVisible(false);
 		

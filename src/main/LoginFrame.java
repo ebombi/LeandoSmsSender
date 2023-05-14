@@ -25,7 +25,8 @@ import java.awt.event.ActionEvent;
 import java.sql.*;
 
 public class LoginFrame extends JFrame {
-
+	private String role;
+	
 	Connection conn;
 	private JPanel contentPane;
 	private JTextField textUsername;
@@ -51,7 +52,7 @@ public class LoginFrame extends JFrame {
 	
 	public LoginFrame() {
 		try {
-			conn = DriverManager.getConnection("jdbc:sqlite:data/database.db");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/leandroproject","root","");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -151,27 +152,34 @@ public class LoginFrame extends JFrame {
 		
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String user = textUsername.getText();
-				String pass = String.valueOf(pwdPassword.getPassword());
-				Statement statment = null;
-				String query = "SELECT * FROM tbl_registration WHERE username='"+user+"' AND password='"+pass+"'";
-				try {
-					statment = conn.createStatement();
-					ResultSet resultSet = statment.executeQuery(query);
-					if(resultSet.next()) {
-						//if success
-					    new MainFrame().setVisible(true);
-					    LoginFrame.this.dispose();
-					} else {
-						//if failed 
-						JOptionPane.showMessageDialog(LoginFrame.this, "Invalid username or password. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
-					}
-				}catch(Exception ex) {
-					ex.printStackTrace();
-					JOptionPane.showMessageDialog(null,"Something Wrong!");
-				}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String user = textUsername.getText();
+		        String pass = String.valueOf(pwdPassword.getPassword());
+
+		        if (user.isEmpty() || user.equals("Username")) {
+		        	JOptionPane.showMessageDialog(null, "Please input Username");
+		        } else if (pass.isEmpty() || pass.equals("Password")) {
+		        	JOptionPane.showMessageDialog(null, "Please input Password");
+		        } else {
+		            Statement statement = null;
+		            String query = "SELECT * FROM tbl_registration WHERE username='"+user+"' AND password='"+pass+"'";
+		            try {
+		                statement = conn.createStatement();
+		                ResultSet resultSet = statement.executeQuery(query);
+		                if (resultSet.next()) {
+		                    // if success
+		                    new MainFrame().setVisible(true);
+		                    LoginFrame.this.dispose();
+		                } else {
+		                    // if failed
+		                    JOptionPane.showMessageDialog(LoginFrame.this, "Invalid username or password. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+		                }
+		            } catch (Exception ex) {
+		                ex.printStackTrace();
+		                JOptionPane.showMessageDialog(null, "Something went wrong!");
+		            }
+		        }
+		    }
 		});
 		/*btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

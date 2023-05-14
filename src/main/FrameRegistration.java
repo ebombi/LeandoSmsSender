@@ -34,22 +34,17 @@ public class FrameRegistration extends JFrame {
 	Connection conn;
 	PreparedStatement pst = null;
 	private JPanel contentPane;
-	private JPanel panel_2;
-	private JTextField textId;
-	private JLabel idcon;
-	private JPanel panel;
-	private JPasswordField pwdPassword;
-	private JLabel passIcon;
-	private JPanel panel_1;
-	private JTextField textLname;
-	private JLabel idcon_1;
-	private JPanel panel_2_1;
-	private JTextField textFname;
-	private JLabel idcon_1_1;
-	private JPanel panel_3;
-	private JTextField textUsername;
-	private JLabel userIcon;
 	private JButton btnRegister;
+	private JLabel lblNewLabel_3;
+	private JTextField txtFname;
+	private JLabel lblNewLabel_3_1;
+	private JTextField txtLname;
+	private JTextField txtTeachersId;
+	private JLabel lblNewLabel_3_1_1;
+	private JLabel lblNewLabel_1;
+	private JTextField txtUsername;
+	private JPasswordField txtPassword;
+	private JLabel lblNewLabel_2;
 
 	/**
 	 * Launch the application.
@@ -73,14 +68,14 @@ public class FrameRegistration extends JFrame {
 	public FrameRegistration() {
 	
 		try {
-			conn = DriverManager.getConnection("jdbc:sqlite:data/database.db");
+			conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/leandroproject","root","");
 		}catch(SQLException connectionError) {
 			connectionError.printStackTrace();
 		}
 	
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(500, 100, 450, 390);
+		setBounds(500, 100, 459, 357);
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 
@@ -114,237 +109,220 @@ public class FrameRegistration extends JFrame {
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(FrameRegistration.class.getResource("/images/Icon__4_-removebg-preview.png")));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(70, 11, 318, 84);
+		lblNewLabel.setBounds(0, 11, 459, 84);
 		contentPane.add(lblNewLabel);
-		
-		panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBackground(SystemColor.menu);
-		panel_2.setBounds(123, 251, 200, 54);
-		contentPane.add(panel_2);
-		
-		textId = new JTextField();
-		textId.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(textId.getText().equals("ID")) {
-					textId.setText("");
-				} else {
-					textFname.selectAll();
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textId.getText().equals(""))
-					textId.setText("ID");
-			}
-		});
-		textId.setText("ID");
-		textId.setFont(new Font("Arial", Font.PLAIN, 15));
-		textId.setColumns(10);
-		textId.setBorder(null);
-		textId.setBackground(SystemColor.menu);
-		textId.setBounds(60, 11, 130, 32);
-		panel_2.add(textId);
-		
-		idcon = new JLabel("ID");
-		idcon.setFont(new Font("Arial", Font.PLAIN, 40));
-		idcon.setBounds(10, 0, 48, 60);
-		panel_2.add(idcon);
-		
-		panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel.setBackground(SystemColor.menu);
-		panel.setBounds(240, 183, 200, 54);
-		contentPane.add(panel);
-		
-		pwdPassword = new JPasswordField();
-		pwdPassword.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(pwdPassword.getText().equals("Password")) {
-					pwdPassword.setEchoChar('●');
-					pwdPassword.setText("");
-				} else {
-					pwdPassword.selectAll();
-				}
-				
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(pwdPassword.getText().equals("")){
-					pwdPassword.setText("Password");
-					pwdPassword.setEchoChar((char)0);
-				}
-			}
-		});
-		pwdPassword.setText("Password");
-		pwdPassword.setFont(new Font("Arial", Font.PLAIN, 15));
-		pwdPassword.setBorder(null);
-		pwdPassword.setBackground(SystemColor.menu);
-		pwdPassword.setBounds(10, 11, 180, 32);
-		panel.add(pwdPassword);
-		
-		passIcon = new JLabel("");
-		passIcon.setBounds(0, 0, 61, 60);
-		panel.add(passIcon);
-		
-		panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBackground(SystemColor.menu);
-		panel_1.setBounds(240, 106, 200, 54);
-		contentPane.add(panel_1);
-		
-		textLname = new JTextField();
-		textLname.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(textLname.getText().equals("Last Name")) {
-					textLname.setText("");
-				} else {
-					textLname.selectAll();
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textLname.getText().equals(""))
-					textLname.setText("Last Name");
-			}
-		});
-		textLname.setText("Last Name");
-		textLname.setFont(new Font("Arial", Font.PLAIN, 15));
-		textLname.setColumns(10);
-		textLname.setBorder(null);
-		textLname.setBackground(SystemColor.menu);
-		textLname.setBounds(10, 11, 180, 32);
-		panel_1.add(textLname);
-		
-		idcon_1 = new JLabel("");
-		idcon_1.setFont(new Font("Arial", Font.PLAIN, 40));
-		idcon_1.setBounds(10, 11, 42, 32);
-		panel_1.add(idcon_1);
-		
-		panel_2_1 = new JPanel();
-		panel_2_1.setLayout(null);
-		panel_2_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2_1.setBackground(SystemColor.menu);
-		panel_2_1.setBounds(10, 106, 200, 54);
-		contentPane.add(panel_2_1);
-		
-		textFname = new JTextField();
-		textFname.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(textFname.getText().equals("First Name")) {
-					textFname.setText("");
-				} else {
-					textFname.selectAll();
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textFname.getText().equals(""))
-					textFname.setText("First Name");
-			}
-		});
-		textFname.setText("First Name");
-		textFname.setFont(new Font("Arial", Font.PLAIN, 15));
-		textFname.setColumns(10);
-		textFname.setBorder(null);
-		textFname.setBackground(SystemColor.menu);
-		textFname.setBounds(20, 11, 170, 32);
-		panel_2_1.add(textFname);
-		
-		idcon_1_1 = new JLabel("");
-		idcon_1_1.setFont(new Font("Arial", Font.PLAIN, 40));
-		idcon_1_1.setBounds(10, 11, 42, 32);
-		panel_2_1.add(idcon_1_1);
-		
-		panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setBackground(SystemColor.menu);
-		panel_3.setBounds(10, 183, 200, 54);
-		contentPane.add(panel_3);
-		
-		textUsername = new JTextField();
-		textUsername.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(textUsername.getText().equals("Username")) {
-					textUsername.setText("");
-				} else {
-					textFname.selectAll();
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if(textUsername.getText().equals(""))
-					textUsername.setText("Username");
-			}
-		});
-		textUsername.setText("Username");
-		textUsername.setFont(new Font("Arial", Font.PLAIN, 15));
-		textUsername.setColumns(10);
-		textUsername.setBorder(null);
-		textUsername.setBackground(SystemColor.menu);
-		textUsername.setBounds(20, 11, 170, 35);
-		panel_3.add(textUsername);
-		
-		userIcon = new JLabel("");
-		userIcon.setBounds(0, 0, 61, 60);
-		panel_3.add(userIcon);
 		
 		btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-					String query = "INSERT INTO tbl_registration (fname, lname, username, password, id) VALUES (?,?,?,?,?)";
-					conn = DriverManager.getConnection("jdbc:sqlite:data/database.db");
-					pst=conn.prepareStatement(query);
-					pst.setString(1, textFname.getText());
-					pst.setString(2, textLname.getText());
-					pst.setString(3, textUsername.getText());
-					char[] passwordChars = pwdPassword.getPassword();
-					String password = new String(passwordChars);
-					pst.setString(4, password);
-					pst.setString(5, textId.getText());
-					pst.executeUpdate();
-					JOptionPane.showMessageDialog(null, "Register Successfull!");
-				}catch(Exception e1) {
-					JOptionPane.showMessageDialog(null, e1);
-				}
-			}
+		    public void actionPerformed(ActionEvent e) {
+		        String fname = txtFname.getText();
+		        String lname = txtLname.getText();
+		        String teachersId = txtTeachersId.getText();
+		        String username = txtUsername.getText();
+		        String password = new String(txtPassword.getPassword());
+		        String checkTeacherQuery = "SELECT * FROM tbl_teachers WHERE fname = ? AND lname = ? AND teachers_id = ?";
+		        String registerQuery = "INSERT INTO tbl_registration (fname, lname, teachers_id, username, password) VALUES (?, ?, ?, ?, ?)";
+
+		        if (fname.isEmpty() || fname.equals("First Name")) {
+		            JOptionPane.showMessageDialog(null, "Please input First Name");
+		        } else if (lname.isEmpty() || lname.equals("Last Name")) {
+		            JOptionPane.showMessageDialog(null, "Please input Last Name");
+		        } else if (teachersId.isEmpty() || teachersId.equals("Teachers ID")) {
+		            JOptionPane.showMessageDialog(null, "Please input Teacher's ID");
+		        } else if (username.isEmpty() || username.equals("Username")) {
+		            JOptionPane.showMessageDialog(null, "Please input Username");
+		        } else if (password.isEmpty() || password.equals("Password")) {
+		            JOptionPane.showMessageDialog(null, "Please input Password");
+		        } else {
+		            try (PreparedStatement checkTeacherStatement = conn.prepareStatement(checkTeacherQuery);
+		                 PreparedStatement registerStatement = conn.prepareStatement(registerQuery)) {
+
+		                checkTeacherStatement.setString(1, fname);
+		                checkTeacherStatement.setString(2, lname);
+		                checkTeacherStatement.setString(3, teachersId);
+
+		                ResultSet teacherResult = checkTeacherStatement.executeQuery();
+
+		                if (teacherResult.next()) {
+		                    // Teacher exists in tbl_teachers
+		                    registerStatement.setString(1, fname);
+		                    registerStatement.setString(2, lname);
+		                    registerStatement.setString(3, teachersId);
+		                    registerStatement.setString(4, username);
+		                    registerStatement.setString(5, password);
+
+		                    int affectedRows = registerStatement.executeUpdate();
+
+		                    if (affectedRows > 0) {
+		                        JOptionPane.showMessageDialog(null, "Registration successful!");
+		                    } else {
+		                        JOptionPane.showMessageDialog(null, "Failed to register. Please try again.");
+		                    }
+		                } else {
+		                    // Teacher does not exist in tbl_teachers
+		                    JOptionPane.showMessageDialog(null, "Teacher not found!");
+		                }
+		            } catch (SQLException ex) {
+		                ex.printStackTrace();
+		            }
+		        }
+		    }
 		});
 		btnRegister.setFont(new Font("Arial", Font.BOLD, 15));
 		btnRegister.setFocusable(false);
 		btnRegister.setBorder(new LineBorder(new Color(0, 0, 0)));
 		btnRegister.setBackground(SystemColor.menu);
-		btnRegister.setBounds(159, 327, 117, 51);
+		btnRegister.setBounds(159, 272, 117, 51);
 		contentPane.add(btnRegister);
 		
-		JLabel lblNewLabel_1 = new JLabel("First Name");
-		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabel_1.setBounds(10, 90, 60, 14);
+		lblNewLabel_3 = new JLabel("First Name");
+		lblNewLabel_3.setBounds(10, 106, 140, 14);
+		contentPane.add(lblNewLabel_3);
+		
+		txtFname = new JTextField();
+		txtFname.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtFname.getText().equals("First Name")) {
+					txtFname.setText("");
+				} else {
+					txtFname.selectAll();
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtFname.getText().equals(""))
+					txtFname.setText("First Name");
+			}
+		});
+		txtFname.setText("First Name");
+		txtFname.setHorizontalAlignment(SwingConstants.CENTER);
+		txtFname.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtFname.setColumns(10);
+		txtFname.setBorder(new LineBorder(new Color(0, 0, 0)));
+		txtFname.setBackground(SystemColor.menu);
+		txtFname.setBounds(10, 120, 140, 45);
+		contentPane.add(txtFname);
+		
+		lblNewLabel_3_1 = new JLabel("Last Name");
+		lblNewLabel_3_1.setBounds(159, 106, 140, 14);
+		contentPane.add(lblNewLabel_3_1);
+		
+		txtLname = new JTextField();
+		txtLname.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtLname.getText().equals("Last Name")) {
+					txtLname.setText("");
+				} else {
+					txtFname.selectAll();
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtLname.getText().equals(""))
+					txtLname.setText("Last Name");
+			}
+		});
+		txtLname.setText("Last Name");
+		txtLname.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLname.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtLname.setColumns(10);
+		txtLname.setBorder(new LineBorder(new Color(0, 0, 0)));
+		txtLname.setBackground(SystemColor.menu);
+		txtLname.setBounds(159, 120, 140, 45);
+		contentPane.add(txtLname);
+		
+		txtTeachersId = new JTextField();
+		txtTeachersId.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtTeachersId.getText().equals("Teachers ID")) {
+					txtTeachersId.setText("");
+				} else {
+					txtTeachersId.selectAll();
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtTeachersId.getText().equals(""))
+					txtTeachersId.setText("Teachers ID");
+			}
+		});
+		txtTeachersId.setText("Teachers ID");
+		txtTeachersId.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTeachersId.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtTeachersId.setColumns(10);
+		txtTeachersId.setBorder(new LineBorder(new Color(0, 0, 0)));
+		txtTeachersId.setBackground(SystemColor.menu);
+		txtTeachersId.setBounds(309, 120, 140, 45);
+		contentPane.add(txtTeachersId);
+		
+		lblNewLabel_3_1_1 = new JLabel("Teachers ID");
+		lblNewLabel_3_1_1.setBounds(309, 106, 140, 14);
+		contentPane.add(lblNewLabel_3_1_1);
+		
+		lblNewLabel_1 = new JLabel("Username");
+		lblNewLabel_1.setBounds(61, 186, 140, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Last Name");
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabel_1_1.setBounds(240, 90, 60, 14);
-		contentPane.add(lblNewLabel_1_1);
+		txtUsername = new JTextField();
+		txtUsername.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtUsername.getText().equals("Username")) {
+					txtUsername.setText("");
+				} else {
+					txtUsername.selectAll();
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtUsername.getText().equals(""))
+					txtUsername.setText("Username");
+			}
+		});
+		txtUsername.setText("Username");
+		txtUsername.setHorizontalAlignment(SwingConstants.CENTER);
+		txtUsername.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtUsername.setColumns(10);
+		txtUsername.setBorder(new LineBorder(new Color(0, 0, 0)));
+		txtUsername.setBackground(SystemColor.menu);
+		txtUsername.setBounds(61, 200, 140, 45);
+		contentPane.add(txtUsername);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Username");
-		lblNewLabel_1_2.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabel_1_2.setBounds(10, 171, 60, 14);
-		contentPane.add(lblNewLabel_1_2);
+		txtPassword = new JPasswordField();
+		txtPassword.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtPassword.getText().equals("Password")) {
+					txtPassword.setEchoChar('●');
+					txtPassword.setText("");
+				} else {
+					txtPassword.selectAll();
+				}
+				
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtPassword.getText().equals("")){
+					txtPassword.setText("Password");
+					txtPassword.setEchoChar((char)0);
+				}
+			}
+		});
+		txtPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPassword.setText("Password");
+		txtPassword.setFont(new Font("Arial", Font.PLAIN, 15));
+		txtPassword.setEchoChar(' ');
+		txtPassword.setBorder(new LineBorder(new Color(0, 0, 0)));
+		txtPassword.setBackground(SystemColor.menu);
+		txtPassword.setBounds(232, 200, 140, 45);
+		contentPane.add(txtPassword);
 		
-		JLabel lblNewLabel_1_3 = new JLabel("Password");
-		lblNewLabel_1_3.setFont(new Font("Arial", Font.PLAIN, 10));
-		lblNewLabel_1_3.setBounds(240, 171, 60, 14);
-		contentPane.add(lblNewLabel_1_3);
+		lblNewLabel_2 = new JLabel("Password");
+		lblNewLabel_2.setBounds(232, 186, 140, 14);
+		contentPane.add(lblNewLabel_2);
 		
 	}
 }
